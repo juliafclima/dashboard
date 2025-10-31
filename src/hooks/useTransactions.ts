@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from "react";
 
 import type { Transaction } from "../types/transaction";
-/* import { isWithinRange } from "../utils/dates"; */
+import { parseAmount } from "../utils/parse";
+import { isWithinRange } from "../utils/dates";
+import { useFilters } from "../context/filtersContext";
 
 export function useTransactions() {
   const [data, setData] = useState<Transaction[]>([]);
@@ -16,7 +18,7 @@ export function useTransactions() {
         if (!res.ok) throw new Error("Failed to load transactions.json");
         const json = (await res.json()) as Transaction[];
         setData(json);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (e: any) {
         setError(e?.message ?? "Error");
       } finally {
@@ -25,9 +27,9 @@ export function useTransactions() {
     })();
   }, []);
 
-  /* const filters = useFilters(); */
+  const filters = useFilters();
 
-  /* const filtered = useMemo(() => {
+  const filtered = useMemo(() => {
     return data.filter((t) => {
       const okDate = isWithinRange(t.date, filters.dateFrom, filters.dateTo);
       const okAccount = filters.accounts.length
@@ -48,9 +50,9 @@ export function useTransactions() {
     filters.accounts,
     filters.industries,
     filters.states,
-  ]); */
+  ]);
 
-  /* const totals = useMemo(() => {
+  const totals = useMemo(() => {
     let deposits = 0,
       withdraws = 0,
       pending = 0;
@@ -61,7 +63,7 @@ export function useTransactions() {
       if (val < 10) pending += val;
     }
     return { deposits, withdraws, pending, balance: deposits - withdraws };
-  }, [filtered]); */
+  }, [filtered]);
 
   const vocab = useMemo(() => {
     const acc = new Set<string>(),
@@ -79,6 +81,5 @@ export function useTransactions() {
     };
   }, [data]);
 
-  /* return { loading, error, data, filtered, totals, vocab }; */
-  return { loading, error, data, vocab };
+  return { loading, error, data, filtered, totals, vocab };
 }

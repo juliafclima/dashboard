@@ -1,9 +1,9 @@
+import TransactionsTable from "../componenents/dashboard/TransactionsTable";
 import Sidebar from "../componenents/Sidebar";
 import { useTransactions } from "../hooks/useTransactions";
 
 export default function Transactions() {
-   /* const { filtered, loading } = useTransactions(); */
-   const { loading } = useTransactions();
+   const { filtered, loading } = useTransactions();
 
    return (
       <div>
@@ -16,7 +16,7 @@ export default function Transactions() {
             </div>
          )}
 
-         {/* {!loading && <TransactionsTable data={filtered} />} */}
+         {!loading && <TransactionsTable data={filtered} />}
       </div>
    );
 }

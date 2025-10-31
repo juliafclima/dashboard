@@ -3,13 +3,14 @@ import { useState, type FormEvent } from "react";
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 
 import bgImage from '../assets/background-image.jpg';
+/* import { useAuth } from "../context/authContext"; */
 
 export default function LoginPage() {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
    const [error, setError] = useState<string | null>(null);
 
-   /* const login = useAuth((s) => s.login); */
+   /* const login = useAuth(); */
    const navigate = useNavigate();
 
    async function onSubmit(e: FormEvent) {

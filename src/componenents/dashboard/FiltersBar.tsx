@@ -3,12 +3,22 @@ import {
    FormControl,
    InputLabel,
    Paper,
+   TextField,
+   Select,
+   MenuItem,
+   Checkbox,
+   ListItemText,
+   OutlinedInput,
+   Button,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
+import { useTransactions } from "../../hooks/useTransactions";
+import { useFilters } from "../../context/filtersContext";
+
 export default function FiltersBar() {
-   /* const { vocab } = useTransactions(); */
-   /* const {
+   const { vocab } = useTransactions();
+   const {
       dateFrom,
       dateTo,
       accounts,
@@ -20,11 +30,12 @@ export default function FiltersBar() {
       setIndustries,
       setStates,
       reset,
-   } = useFilters(); */
+   } = useFilters();
 
    const theme = useTheme();
 
-   /* const handleMultiChange = (setter: (val: string[]) => void) => (event: any) => {
+   // eslint-disable-next-line @typescript-eslint/no-explicit-any
+   const handleMultiChange = (setter: (val: string[]) => void) => (event: any) => {
       const { value } = event.target;
       setter(typeof value === "string" ? value.split(",") : value);
    };
@@ -35,7 +46,7 @@ export default function FiltersBar() {
             maxHeight: 250,
          },
       },
-   }; */
+   };
 
    return (
       <Paper
@@ -50,28 +61,28 @@ export default function FiltersBar() {
       >
          <Grid container spacing={2} alignItems="center" justifyContent="space-between">
             <div style={{ display: "flex", gap: "16px", width: "100%" }}>
-               {/* <TextField
+               <TextField
                   label="Start date"
                   type="date"
                   value={dateFrom ?? ""}
                   onChange={(e) => setDateFrom(e.target.value || undefined)}
                   fullWidth
                   InputLabelProps={{ shrink: true }}
-               /> */}
+               />
 
-               {/* <TextField
+               <TextField
                   label="Final Date"
                   type="date"
                   value={dateTo ?? ""}
                   onChange={(e) => setDateTo(e.target.value || undefined)}
                   fullWidth
                   InputLabelProps={{ shrink: true }}
-               /> */}
+               />
             </div>
 
             <FormControl fullWidth>
                <InputLabel>Accounts</InputLabel>
-               {/*  <Select
+               <Select
                   multiple
                   value={accounts}
                   onChange={handleMultiChange(setAccounts)}
@@ -85,12 +96,12 @@ export default function FiltersBar() {
                         <ListItemText primary={acc} />
                      </MenuItem>
                   ))}
-               </Select> */}
+               </Select>
             </FormControl>
 
             <FormControl fullWidth>
                <InputLabel>Industries</InputLabel>
-               {/* <Select
+               <Select
                   multiple
                   value={industries}
                   onChange={handleMultiChange(setIndustries)}
@@ -104,12 +115,12 @@ export default function FiltersBar() {
                         <ListItemText primary={ind} />
                      </MenuItem>
                   ))}
-               </Select> */}
+               </Select>
             </FormControl>
 
             <FormControl fullWidth>
                <InputLabel>States</InputLabel>
-               {/*  <Select
+               <Select
                   multiple
                   value={states}
                   onChange={handleMultiChange(setStates)}
@@ -123,12 +134,12 @@ export default function FiltersBar() {
                         <ListItemText primary={st} />
                      </MenuItem>
                   ))}
-               </Select> */}
+               </Select>
             </FormControl>
 
-            {/* <Button variant="outlined" color="primary" onClick={reset} fullWidth>
+            <Button variant="outlined" color="primary" onClick={reset} fullWidth>
                Clear
-            </Button> */}
+            </Button>
          </Grid>
       </Paper>
    );

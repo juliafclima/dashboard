@@ -64,7 +64,7 @@ export default function SummaryCards({
                   flexDirection: "column",
                   justifyContent: "space-between",
                   background: bgColor,
-                  color: theme.palette.getContrastText(bgColor),
+                  color: 'white',
                }}
             >
                <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>

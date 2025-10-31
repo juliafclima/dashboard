@@ -8,7 +8,6 @@ import {
    TableContainer,
    TableHead,
    TableRow,
-   Typography,
    TablePagination,
 } from "@mui/material";
 
@@ -16,10 +15,10 @@ import type { Transaction } from "../../types/transaction";
 import { parseAmount } from "../../utils/parse";
 import { formatDate } from "../../utils/dates";
 import { formatCurrency } from "../../utils/currency";
+import FiltersBar from "./FiltersBar";
 
 export default function TransactionsTable({ data }: { data: Transaction[] }) {
-   /* const [q, setQ] = useState(""); */
-   const [q, ] = useState("");
+   const [q,] = useState("");
    const [page, setPage] = useState(0);
    const [rowsPerPage, setRowsPerPage] = useState(10);
 
@@ -33,16 +32,6 @@ export default function TransactionsTable({ data }: { data: Transaction[] }) {
             t.state.toLowerCase().includes(term),
       );
    }, [q, data]);
-
-   const totals = useMemo(() => {
-      const dep = filtered
-         .filter((t) => t.transaction_type === "deposit")
-         .reduce((s, t) => s + parseAmount(t.amount), 0);
-      const wit = filtered
-         .filter((t) => t.transaction_type === "withdraw")
-         .reduce((s, t) => s + parseAmount(t.amount), 0);
-      return { dep, wit, total: dep + wit };
-   }, [filtered]);
 
    const handleChangePage = (
       _event: React.MouseEvent<HTMLButtonElement> | null,
@@ -72,6 +61,8 @@ export default function TransactionsTable({ data }: { data: Transaction[] }) {
                mx: "auto",
             }}
          >
+            <FiltersBar />
+
             <TableContainer>
                <Table size="small">
                   <TableHead>
@@ -135,25 +126,6 @@ export default function TransactionsTable({ data }: { data: Transaction[] }) {
                   </Box>
                )}
             </TableContainer>
-
-            <Box
-               display="flex"
-               flexDirection={{ xs: "column", sm: "row" }}
-               justifyContent="space-between"
-               alignItems={{ xs: "stretch", sm: "center" }}
-               gap={2}
-               my={2}
-            >
-               <Typography variant="body2" color="text.secondary">
-                  <Box component="span" color="success.main">
-                     {formatCurrency(totals.dep)} incomes
-                  </Box>
-                  {" • "}
-                  <Box component="span" color="error.main">
-                     {formatCurrency(totals.wit)} expenses
-                  </Box>
-               </Typography>
-            </Box>
 
             <TablePagination
                component="div"

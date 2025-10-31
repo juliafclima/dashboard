@@ -52,7 +52,7 @@ export default function LineVolume({ data }: { data: Transaction[] }) {
                }}
             >
                <Typography variant="caption" color="text.secondary" gutterBottom>
-                  {payload[0].payload.fullDate}
+                  {formatDate(payload[0].payload.fullDate)}
                </Typography>
                <Typography
                   variant="subtitle1"
@@ -110,6 +110,7 @@ export default function LineVolume({ data }: { data: Transaction[] }) {
                      tick={{ fill: theme.palette.text.primary, opacity: 0.6, fontSize: 12 }}
                      stroke={theme.palette.text.primary}
                      opacity={0.3}
+                     angle={20}
                   />
                   <YAxis
                      tick={{ fill: theme.palette.text.primary, opacity: 0.6, fontSize: 12 }}

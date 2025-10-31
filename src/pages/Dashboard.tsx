@@ -1,9 +1,12 @@
+import LineVolume from "../componenents/charts/LineVolume";
+import StackedBars from "../componenents/charts/StackedBars";
+import FiltersBar from "../componenents/dashboard/FiltersBar";
+import SummaryCards from "../componenents/dashboard/SummaryCards";
 import Sidebar from "../componenents/Sidebar";
 import { useTransactions } from "../hooks/useTransactions";
 
 export default function Dashboard() {
-   /* const { loading, error, filtered, totals } = useTransactions(); */
-   const { loading, error } = useTransactions();
+   const { loading, error, filtered, totals } = useTransactions();
 
    return (
       <>
@@ -19,17 +22,17 @@ export default function Dashboard() {
          {!loading && !error && (
             <>
                <section className="grid gap-6 lg:grid-cols-2 w-4/5 mx-auto">
-                  {/* <FiltersBar /> */}
-                  {/* <SummaryCards
+                  <FiltersBar />
+                  <SummaryCards
                      balance={totals.balance}
                      deposits={totals.deposits}
                      withdraws={totals.withdraws}
-                  /> */}
+                  />
                </section>
 
                <section className="grid gap-6 lg:grid-cols-2 w-4/5 mx-auto">
-                  {/* <StackedBars data={filtered} />
-                  <LineVolume data={filtered} /> */}
+                  <StackedBars data={filtered} />
+                  <LineVolume data={filtered} />
                </section>
             </>
          )}

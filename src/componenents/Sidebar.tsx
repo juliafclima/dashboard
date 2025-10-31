@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router";
 import { Toolbar, Button, Paper, Box, Typography } from "@mui/material";
 import CottageOutlinedIcon from "@mui/icons-material/CottageOutlined";
-import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
+/* import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined"; */
 
 import { getGreeting } from "./utils/Greeting";
-
+/* import { useAuth } from "../context/authContext"; */
 export default function Sidebar() {
-   /* const logout = useAuth((s) => s.logout); */
+   /* const logout = useAuth(); */
    const navigate = useNavigate();
 
    const handleNavigateTransactions = () => navigate("/transactions");
@@ -40,7 +40,7 @@ export default function Sidebar() {
                   fontWeight: 500,
                }}
             >
-               Olá, <strong>usuário</strong>. {getGreeting()}
+               Hi, <strong>usuário</strong>. {getGreeting()}
             </Typography>
 
             <Box
@@ -75,17 +75,17 @@ export default function Sidebar() {
                   Transactions Details
                </Button>
 
-               <Button
+               {/* <Button
                   color="inherit"
                   sx={{
                      color: "text.primary",
                      fontWeight: 600,
                      "&:hover": { color: "secondary.main" },
                   }}
-               /* onClick={logout} */
+               onClick={logout}
                >
                   <LogoutOutlinedIcon />
-               </Button>
+               </Button> */}
             </Box>
          </Toolbar>
       </Paper>

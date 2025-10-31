@@ -24,8 +24,8 @@ export default function StackedBars({ data }: { data: Transaction[] }) {
       return [...m.entries()]
          .map(([month, { deposit, withdraw }]) => ({
             month: month.replace("-", "/"),
-            Receitas: deposit,
-            Despesas: withdraw,
+            Incomes: deposit,
+            Expenses: withdraw,
          }))
          .sort((a, b) => a.month.localeCompare(b.month));
    }, [data]);
@@ -43,7 +43,7 @@ export default function StackedBars({ data }: { data: Transaction[] }) {
                }}
             >
                <Typography variant="body2" fontWeight={500} mb={1}>
-                  {label}
+                  {formatDate(label)}
                </Typography>
 
                {payload.map((entry: any, i: number) => (
@@ -111,8 +111,8 @@ export default function StackedBars({ data }: { data: Transaction[] }) {
                      tickFormatter={(v) => `R$ ${(v / 1000).toFixed(0)}k`}
                   />
                   <Tooltip content={<CustomTooltip />} />
-                  <Bar dataKey="Receitas" fill={theme.palette.success.main} radius={[8, 8, 0, 0]} />
-                  <Bar dataKey="Despesas" fill={theme.palette.error.main} radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="Incomes" fill={theme.palette.success.main} radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="Expenses" fill={theme.palette.error.main} radius={[8, 8, 0, 0]} />
                </BarChart>
             </ResponsiveContainer>
          </Box>
