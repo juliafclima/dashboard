@@ -1,13 +1,10 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-interface AuthContextType {
-  token: string | null;
-  login: (email: string, password: string) => Promise<void>;
-  logout: () => void;
-}
+import type { AuthContextType } from "../types/useAuth";
 
 const AuthContext = createContext<AuthContextType>({
   token: null,
+  email: null,
   login: async () => { },
   logout: () => { },
 });
@@ -16,6 +13,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [token, setToken] = useState<string | null>(() => {
     return localStorage.getItem("auth_token");
   });
+  const [email, setEmail] = useState<string | null>(() => localStorage.getItem("auth_email"));
 
   useEffect(() => {
     if (token) {
@@ -23,17 +21,23 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     } else {
       localStorage.removeItem("auth_token");
     }
-  }, [token]);
+    if (email) {
+      localStorage.setItem("auth_email", email);
+    } else {
+      localStorage.removeItem("auth_email");
+    }
+  }, [token, email]);
 
   const login = async (email: string, password: string) => {
     if (!email || !password) throw new Error("Invalid credentials");
     setToken("TOKEN-" + Math.random().toString(36).slice(2));
+    setEmail(email);
   };
 
   const logout = () => setToken(null);
 
   return (
-    <AuthContext.Provider value={{ token, login, logout }}>
+    <AuthContext.Provider value={{ token, login, logout, email }}>
       {children}
     </AuthContext.Provider>
   );

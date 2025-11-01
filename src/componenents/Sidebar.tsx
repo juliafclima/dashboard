@@ -6,7 +6,7 @@ import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 import { getGreeting } from "./utils/Greeting";
 import { useAuth } from "../context/authContext";
 export default function Sidebar() {
-   const { logout } = useAuth();
+   const { logout, email } = useAuth();
    const navigate = useNavigate();
 
    const handleNavigateHome = () => navigate("/");
@@ -38,7 +38,7 @@ export default function Sidebar() {
                   fontWeight: 500,
                }}
             >
-               Hi, <strong>usuário</strong>. {getGreeting()}
+               Hi, <strong>{email}</strong>. {getGreeting()}
             </Typography>
 
             <Box
