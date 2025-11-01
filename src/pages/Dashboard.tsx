@@ -64,14 +64,14 @@ export default function Dashboard() {
                         <Box
                            sx={{
                               width: { xs: '100%', md: 'calc(50% - 12px)' },
-                              flexGrow: 1,
-                              marginTop: 3
+                              flexGrow: 1
                            }}
                         >
                            <SummaryCards
                               balance={totals.balance}
                               deposits={totals.deposits}
                               withdraws={totals.withdraws}
+                              pending={totals.pending}
                            />
                         </Box>
                      </Box>

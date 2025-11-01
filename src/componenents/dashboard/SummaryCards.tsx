@@ -1,4 +1,4 @@
-import { ArrowDownwardOutlined, ArrowUpwardOutlined, Wallet } from "@mui/icons-material";
+import { TrendingDownOutlined, AttachMoneyOutlined, BalanceOutlined, AccessTimeOutlined } from "@mui/icons-material";
 import { Box, Paper, Typography, useTheme } from "@mui/material";
 
 import { formatCurrency } from "../../utils/currency";
@@ -8,11 +8,13 @@ export default function SummaryCards({
    balance,
    deposits,
    withdraws,
+   pending,
    currency = "BRL",
 }: {
    balance: number;
    deposits: number;
    withdraws: number;
+   pending: number;
    currency?: string;
 }) {
    const theme = useTheme();
@@ -21,22 +23,29 @@ export default function SummaryCards({
       {
          label: "Incomes",
          value: deposits,
-         icon: ArrowUpwardOutlined,
-         color: '#000000',
+         icon: AttachMoneyOutlined,
+         color: theme.palette.primary.contrastText,
          bgColor: '#008e63a9',
       },
       {
          label: "Expenses",
          value: withdraws,
-         icon: ArrowDownwardOutlined,
-         color: theme.palette.error.main,
+         icon: TrendingDownOutlined,
+         color: theme.palette.primary.contrastText,
          bgColor: '#dc143cc0'
       },
       {
          label: "Total Balance",
          value: balance,
-         icon: Wallet,
-         color: theme.palette.primary.main,
+         icon: BalanceOutlined,
+         color: theme.palette.primary.contrastText,
+         bgColor: '#933e95ba'
+      },
+      {
+         label: "Pending Transactions",
+         value: pending,
+         icon: AccessTimeOutlined,
+         color: theme.palette.primary.contrastText,
          bgColor: '#933e95ba'
       },
    ];
@@ -44,33 +53,33 @@ export default function SummaryCards({
    return (
       <Box
          display="flex"
-         justifyContent="space-around"
-         flexDirection="column"
-         mx="auto"
+         flexWrap="wrap"
+         justifyContent="center"
          gap={2}
-         mb={4}
       >
          {items.map(({ label, value, icon: Icon, color, bgColor }) => (
             <Paper
                key={label}
                elevation={3}
                sx={{
-                  flex: "1 1 0",
-                  minWidth: 350,
+                  flex: "1 1 calc(50% - 16px)", 
+                  height: 180,
+                  minWidth: 300,
+                  maxWidth: 400,
                   p: 3,
                   borderRadius: 3,
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "space-between",
                   background: bgColor,
-                  color: 'white',
+                  color: "white",
                }}
             >
                <Box display="flex" justifyContent="space-between" alignItems="center" mb={1}>
                   <Typography variant="body1" fontWeight={600}>
                      {label}
                   </Typography>
-                  <Icon size={28} color={color} />
+                  <Icon fontSize="large" sx={{ color }} />
                </Box>
                <Typography variant="h5" fontWeight={700}>
                   {formatCurrency(value, currency)}
@@ -79,4 +88,5 @@ export default function SummaryCards({
          ))}
       </Box>
    );
+
 }
