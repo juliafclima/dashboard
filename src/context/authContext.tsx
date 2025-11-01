@@ -8,8 +8,8 @@ interface AuthContextType {
 
 const AuthContext = createContext<AuthContextType>({
   token: null,
-  login: async () => {},
-  logout: () => {},
+  login: async () => { },
+  logout: () => { },
 });
 
 export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
@@ -27,7 +27,6 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
 
   const login = async (email: string, password: string) => {
     if (!email || !password) throw new Error("Invalid credentials");
-    await new Promise((r) => setTimeout(r, 500));
     setToken("TOKEN-" + Math.random().toString(36).slice(2));
   };
 

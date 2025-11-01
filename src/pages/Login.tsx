@@ -3,21 +3,21 @@ import { useState, type FormEvent } from "react";
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 
 import bgImage from '../assets/background-image.jpg';
-/* import { useAuth } from "../context/authContext"; */
+import { useAuth } from "../context/authContext"; 
 
 export default function LoginPage() {
    const [username, setUsername] = useState("");
    const [password, setPassword] = useState("");
    const [error, setError] = useState<string | null>(null);
 
-   /* const login = useAuth(); */
+   const { login } = useAuth();
    const navigate = useNavigate();
 
    async function onSubmit(e: FormEvent) {
       e.preventDefault();
       try {
          setError(null);
-         /* await login(username, password); */
+         await login(username, password);
          await new Promise((r) => setTimeout(r, 400));
          navigate("/");
          // eslint-disable-next-line @typescript-eslint/no-explicit-any

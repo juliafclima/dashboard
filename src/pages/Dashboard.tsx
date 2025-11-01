@@ -11,6 +11,7 @@ import TransactionsTable from "../componenents/dashboard/TransactionsTable";
 import Loading from "../componenents/Loading";
 import Sidebar from "../componenents/Sidebar";
 import { useTransactions } from "../hooks/useTransactions";
+import Footer from "../componenents/Footer";
 
 export default function Dashboard() {
    const { loading, filtered, totals } = useTransactions();
@@ -107,6 +108,8 @@ export default function Dashboard() {
                </Box>
             </Box>
          )}
+
+         <Footer />
       </Box>
    );
 }

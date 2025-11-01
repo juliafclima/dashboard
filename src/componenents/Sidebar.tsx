@@ -1,12 +1,12 @@
 import { useNavigate } from "react-router";
 import { Toolbar, Button, Paper, Box, Typography } from "@mui/material";
 import CottageOutlinedIcon from "@mui/icons-material/CottageOutlined";
-/* import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined"; */
+import LogoutOutlinedIcon from "@mui/icons-material/LogoutOutlined";
 
 import { getGreeting } from "./utils/Greeting";
-/* import { useAuth } from "../context/authContext"; */
+import { useAuth } from "../context/authContext";
 export default function Sidebar() {
-   /* const logout = useAuth(); */
+   const { logout } = useAuth();
    const navigate = useNavigate();
 
    const handleNavigateHome = () => navigate("/");
@@ -61,17 +61,17 @@ export default function Sidebar() {
                   <CottageOutlinedIcon />
                </Button>
 
-               {/* <Button
+               <Button
                   color="inherit"
                   sx={{
                      color: "text.primary",
                      fontWeight: 600,
-                     "&:hover": { color: "secondary.main" },
+                     "&:hover": { color: "#933e95ba" },
                   }}
                onClick={logout}
                >
                   <LogoutOutlinedIcon />
-               </Button> */}
+               </Button>
             </Box>
          </Toolbar>
       </Paper>
