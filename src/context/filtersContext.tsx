@@ -1,4 +1,3 @@
-// src/context/filtersContext.tsx
 import React, { createContext, useContext, useReducer } from "react";
 
 import type { FiltersState } from "../types/filtersState";

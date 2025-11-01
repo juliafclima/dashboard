@@ -22,22 +22,22 @@ export default function SummaryCards({
          label: "Incomes",
          value: deposits,
          icon: ArrowUpwardOutlined,
-         color: theme.palette.success.main,
-         bgColor: theme.palette.success.light,
+         color: '#000000',
+         bgColor: '#008e63a9',
       },
       {
          label: "Expenses",
          value: withdraws,
          icon: ArrowDownwardOutlined,
          color: theme.palette.error.main,
-         bgColor: theme.palette.error.light,
+         bgColor: '#dc143cc0'
       },
       {
          label: "Total Balance",
          value: balance,
          icon: Wallet,
          color: theme.palette.primary.main,
-         bgColor: theme.palette.primary.light,
+         bgColor: '#933e95ba'
       },
    ];
 
@@ -47,7 +47,6 @@ export default function SummaryCards({
          justifyContent="space-around"
          flexDirection="column"
          mx="auto"
-         width={"90%"}
          gap={2}
          mb={4}
       >

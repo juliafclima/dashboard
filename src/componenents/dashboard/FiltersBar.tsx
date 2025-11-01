@@ -53,7 +53,6 @@ export default function FiltersBar() {
          elevation={2}
          sx={{
             p: 3,
-            mb: 3,
             borderRadius: 2,
             backgroundColor: theme.palette.background.paper,
             mx: "auto",
@@ -137,7 +136,7 @@ export default function FiltersBar() {
                </Select>
             </FormControl>
 
-            <Button variant="outlined" color="primary" onClick={reset} fullWidth>
+            <Button variant="contained" sx={{ backgroundColor: "#933e95ba", fontWeight: 700, "&:hover": { backgroundColor: "#933e95"} }} onClick={reset} fullWidth>
                Clear
             </Button>
          </Grid>

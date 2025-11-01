@@ -77,14 +77,14 @@ export default function StackedBars({ data }: { data: Transaction[] }) {
                      width={12}
                      height={12}
                      borderRadius={1}
-                     bgcolor={theme.palette.success.main}
+                     bgcolor={'#008e63a9'}
                   />
                   <Typography variant="body2" color="text.secondary">
                      Incomes
                   </Typography>
                </Stack>
                <Stack direction="row" spacing={1} alignItems="center">
-                  <Box width={12} height={12} borderRadius={1} bgcolor={theme.palette.error.main} />
+                  <Box width={12} height={12} borderRadius={1} bgcolor={'#dc143cc0'} />
                   <Typography variant="body2" color="text.secondary">
                      Expenses
                   </Typography>
@@ -111,8 +111,8 @@ export default function StackedBars({ data }: { data: Transaction[] }) {
                      tickFormatter={(v) => `R$ ${(v / 1000).toFixed(0)}k`}
                   />
                   <Tooltip content={<CustomTooltip />} />
-                  <Bar dataKey="Incomes" fill={theme.palette.success.main} radius={[8, 8, 0, 0]} />
-                  <Bar dataKey="Expenses" fill={theme.palette.error.main} radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="Incomes" fill={'#008e63a9'} radius={[8, 8, 0, 0]} />
+                  <Bar dataKey="Expenses" fill={'#dc143cc0'} radius={[8, 8, 0, 0]} />
                </BarChart>
             </ResponsiveContainer>
          </Box>

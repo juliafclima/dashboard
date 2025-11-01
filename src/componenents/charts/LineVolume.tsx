@@ -57,7 +57,7 @@ export default function LineVolume({ data }: { data: Transaction[] }) {
                <Typography
                   variant="subtitle1"
                   fontWeight="bold"
-                  color={value >= 0 ? "success.main" : "error.main"}
+                  color={value >= 0 ? "#008e63a9" : "#dc143cc0"}
                >
                   {formatCurrency(value)}
                </Typography>
@@ -125,8 +125,8 @@ export default function LineVolume({ data }: { data: Transaction[] }) {
                   <Area
                      type="monotone"
                      dataKey="value"
-                     stroke={theme.palette.primary.main}
-                     strokeWidth={3}
+                     stroke={"#933e95ba"}
+                     strokeWidth={2}
                      fill="url(#colorGradient)"
                   />
                </AreaChart>

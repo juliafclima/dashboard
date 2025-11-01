@@ -9,8 +9,6 @@ export default function Sidebar() {
    /* const logout = useAuth(); */
    const navigate = useNavigate();
 
-   const handleNavigateTransactions = () => navigate("/transactions");
-
    const handleNavigateHome = () => navigate("/");
 
    return (
@@ -56,23 +54,11 @@ export default function Sidebar() {
                   sx={{
                      color: "text.primary",
                      fontWeight: 600,
-                     "&:hover": { color: "primary.light" },
+                     "&:hover": { color: "#933e95ba" },
                   }}
                   onClick={handleNavigateHome}
                >
                   <CottageOutlinedIcon />
-               </Button>
-
-               <Button
-                  color="inherit"
-                  sx={{
-                     color: "text.primary",
-                     fontWeight: 600,
-                     "&:hover": { color: "secondary.main" },
-                  }}
-                  onClick={handleNavigateTransactions}
-               >
-                  Transactions Details
                </Button>
 
                {/* <Button

@@ -1,41 +1,112 @@
+import {
+   Box,
+   Stack,
+} from "@mui/material";
+
 import LineVolume from "../componenents/charts/LineVolume";
 import StackedBars from "../componenents/charts/StackedBars";
 import FiltersBar from "../componenents/dashboard/FiltersBar";
 import SummaryCards from "../componenents/dashboard/SummaryCards";
+import TransactionsTable from "../componenents/dashboard/TransactionsTable";
+import Loading from "../componenents/Loading";
 import Sidebar from "../componenents/Sidebar";
 import { useTransactions } from "../hooks/useTransactions";
 
 export default function Dashboard() {
-   const { loading, error, filtered, totals } = useTransactions();
+   const { loading, filtered, totals } = useTransactions();
 
    return (
-      <>
+      <Box sx={{ backgroundColor: '#d8d8e4' }}>
          <Sidebar />
 
-         {loading && (
-            <div className="flex flex-col items-center justify-center py-16">
-               <div className="h-10 w-10 rounded-full border-4 border-input border-t-[oklch(var(--primary))] animate-spin" />
-               <p className="mt-3 text-sm text-muted-foreground">Loading data…</p>
-            </div>
-         )}
+         {loading && (<Box
+            sx={{
+               display: 'flex',
+               justifyContent: 'center',
+               alignItems: 'center',
+               height: '70vh',
+               width: '100%',
+            }}
+         >
+            <Loading />
+         </Box>)}
 
-         {!loading && !error && (
-            <>
-               <section className="grid gap-6 lg:grid-cols-2 w-4/5 mx-auto">
-                  <FiltersBar />
-                  <SummaryCards
-                     balance={totals.balance}
-                     deposits={totals.deposits}
-                     withdraws={totals.withdraws}
-                  />
-               </section>
+         {!loading && (
+            <Box sx={{ display: 'flex', minHeight: '100vh', padding: 1, marginBottom: 3 }}>
+               <Box
+                  component="main"
+                  sx={{
+                     flexGrow: 1,
+                     p: 1,
+                     width: { xs: '100%', sm: `calc(100% - 60px)` },
+                  }}
+               >
+                  <Stack spacing={3}>
+                     <Box
+                        sx={{
+                           display: 'flex',
+                           flexWrap: 'wrap',
+                           gap: 3,
+                           my: 2,
+                           alignItems: 'center',
+                        }}
+                     >
+                        <Box
+                           sx={{
+                              width: { xs: '100%', md: 'calc(50% - 12px)' },
+                              flexGrow: 1,
+                           }}
+                        >
+                           <FiltersBar />
+                        </Box>
 
-               <section className="grid gap-6 lg:grid-cols-2 w-4/5 mx-auto">
-                  <StackedBars data={filtered} />
-                  <LineVolume data={filtered} />
-               </section>
-            </>
+                        <Box
+                           sx={{
+                              width: { xs: '100%', md: 'calc(50% - 12px)' },
+                              flexGrow: 1,
+                              marginTop: 3
+                           }}
+                        >
+                           <SummaryCards
+                              balance={totals.balance}
+                              deposits={totals.deposits}
+                              withdraws={totals.withdraws}
+                           />
+                        </Box>
+                     </Box>
+
+                     <Box
+                        sx={{
+                           display: 'flex',
+                           flexWrap: 'wrap',
+                           gap: 3,
+                           my: 2,
+                        }}
+                     >
+                        <Box
+                           sx={{
+                              width: { xs: '100%', md: 'calc(50% - 12px)' },
+                              flexGrow: 1,
+                           }}
+                        >
+                           <StackedBars data={filtered} />
+                        </Box>
+
+                        <Box
+                           sx={{
+                              width: { xs: '100%', md: 'calc(50% - 12px)' },
+                              flexGrow: 1,
+                           }}
+                        >
+                           <LineVolume data={filtered} />
+                        </Box>
+                     </Box>
+
+                     <TransactionsTable data={filtered} />
+                  </Stack>
+               </Box>
+            </Box>
          )}
-      </>
+      </Box>
    );
 }

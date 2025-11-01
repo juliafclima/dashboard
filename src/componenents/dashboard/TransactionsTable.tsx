@@ -9,18 +9,18 @@ import {
    TableHead,
    TableRow,
    TablePagination,
+   Typography,
 } from "@mui/material";
 
 import type { Transaction } from "../../types/transaction";
 import { parseAmount } from "../../utils/parse";
 import { formatDate } from "../../utils/dates";
 import { formatCurrency } from "../../utils/currency";
-import FiltersBar from "./FiltersBar";
 
 export default function TransactionsTable({ data }: { data: Transaction[] }) {
    const [q,] = useState("");
    const [page, setPage] = useState(0);
-   const [rowsPerPage, setRowsPerPage] = useState(10);
+   const [rowsPerPage, setRowsPerPage] = useState(50);
 
    const filtered = useMemo(() => {
       const term = q.trim().toLowerCase();
@@ -57,12 +57,12 @@ export default function TransactionsTable({ data }: { data: Transaction[] }) {
             sx={{
                borderRadius: 3,
                p: 3,
-               width: "80%",
                mx: "auto",
             }}
          >
-            <FiltersBar />
-
+            <Typography variant="h6" fontWeight={700} sx={{ mb: 2 }}>
+               Transaction History
+            </Typography>
             <TableContainer>
                <Table size="small">
                   <TableHead>
@@ -98,8 +98,8 @@ export default function TransactionsTable({ data }: { data: Transaction[] }) {
                                  color={"white"}
                                  bgcolor={
                                     t.transaction_type === "deposit"
-                                       ? "success.light"
-                                       : "error.light"
+                                       ? "#008e63a9"
+                                       : "#dc143cc0"
                                  }
                               >
                                  {t.transaction_type === "deposit" ? "Incomes" : "Expense"}
@@ -110,8 +110,8 @@ export default function TransactionsTable({ data }: { data: Transaction[] }) {
                               sx={{
                                  color:
                                     t.transaction_type === "deposit"
-                                       ? "success.main"
-                                       : "error.main",
+                                       ? "#008e63a9"
+                                       : "#dc143cc0",
                               }}
                            >
                               {formatCurrency(parseAmount(t.amount))}
