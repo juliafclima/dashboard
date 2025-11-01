@@ -51,6 +51,7 @@ export default function LoginPage() {
                alignItems: "center",
                justifyContent: "center",
                p: 4,
+               backgroundImage: "linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%)",
             }}
          >
             <Paper
