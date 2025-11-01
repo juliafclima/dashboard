@@ -1,5 +1,4 @@
-import React, { createContext, useContext, useReducer } from "react";
-
+import React, { createContext, useContext, useReducer, useEffect } from "react";
 import type { FiltersState } from "../types/filtersState";
 
 const initial: FiltersState = {
@@ -17,6 +16,15 @@ type Action =
    | { type: "SET_INDUSTRIES"; payload: string[] }
    | { type: "SET_STATES"; payload: string[] }
    | { type: "RESET" };
+
+function loadFromStorage(): FiltersState {
+   try {
+      const stored = localStorage.getItem("filtersState");
+      return stored ? JSON.parse(stored) : initial;
+   } catch {
+      return initial;
+   }
+}
 
 function filtersReducer(state: FiltersState, action: Action): FiltersState {
    switch (action.type) {
@@ -43,7 +51,12 @@ const FiltersContext = createContext<{
 }>({ state: initial, dispatch: () => null });
 
 export const FiltersProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-   const [state, dispatch] = useReducer(filtersReducer, initial);
+   const [state, dispatch] = useReducer(filtersReducer, initial, loadFromStorage);
+
+   useEffect(() => {
+      localStorage.setItem("filtersState", JSON.stringify(state));
+   }, [state]);
+
    return (
       <FiltersContext.Provider value={{ state, dispatch }}>
          {children}
