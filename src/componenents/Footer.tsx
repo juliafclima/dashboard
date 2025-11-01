@@ -24,7 +24,7 @@ const Footer = () => {
             }}
          >
             <Typography variant="body1">
-               Desenvolvido por Júlia Lima
+               Developed by Júlia Lima
             </Typography>
             <Box>
                <IconButton
