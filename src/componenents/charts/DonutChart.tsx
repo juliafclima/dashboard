@@ -102,7 +102,7 @@ export default function DonutChart({ deposits, withdraws, pending, balance }: Do
               outerRadius={isMobile ? 90 : 120}
               paddingAngle={3}
             >
-              {chartData.map((entry, index) => (
+              {chartData.map((_, index) => (
                 <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
               ))}
             </Pie>
