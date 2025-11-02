@@ -46,7 +46,7 @@ export default function SummaryCards({
          value: pending,
          icon: AccessTimeOutlined,
          color: theme.palette.primary.contrastText,
-         bgColor: '#933e95ba'
+         bgColor: '#f5a623a0'
       },
    ];
 

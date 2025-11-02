@@ -12,6 +12,7 @@ import Loading from "../componenents/Loading";
 import Sidebar from "../componenents/Sidebar";
 import { useTransactions } from "../hooks/useTransactions";
 import Footer from "../componenents/Footer";
+import DonutChart from "../componenents/charts/DonutChart";
 
 export default function Dashboard() {
    const { loading, filtered, totals } = useTransactions();
@@ -102,7 +103,12 @@ export default function Dashboard() {
                            <LineVolume data={filtered} />
                         </Box>
                      </Box>
-
+                     <DonutChart
+                        deposits={totals.deposits}
+                        withdraws={totals.withdraws}
+                        pending={totals.pending}
+                        balance={totals.balance}
+                     />
                      <TransactionsTable data={filtered} />
                   </Stack>
                </Box>
