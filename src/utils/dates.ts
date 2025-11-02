@@ -1,6 +1,6 @@
 import { format, isWithinInterval } from "date-fns";
 
-export const formatDate = (epochMs: number, pattern = "dd/MM/yyyy") =>
+export const formatDate = (epochMs: number | string, pattern = "dd/MM/yyyy") =>
    format(new Date(epochMs), pattern);
 
 export const isWithinRange = (epochMs: number, from?: string, to?: string) => {

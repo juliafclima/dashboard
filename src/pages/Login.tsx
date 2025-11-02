@@ -3,7 +3,7 @@ import { useState, type FormEvent } from "react";
 import { Box, Button, Paper, TextField, Typography } from "@mui/material";
 
 import bgImage from '../assets/background-image.jpg';
-import { useAuth } from "../context/authContext"; 
+import { useAuth } from "../context/authContext";
 
 export default function LoginPage() {
    const [username, setUsername] = useState("");
@@ -63,9 +63,14 @@ export default function LoginPage() {
                   borderRadius: 3,
                }}
             >
-               <Typography variant="h4" align="center" color="primary" gutterBottom>
-                  SIGN IN
-               </Typography>
+               <Box display="flex" justifyContent="center" mb={3}>
+                  <img
+                     src="/favicon.svg"
+                     alt="Logo"
+                     style={{ width: 120, height: 'auto' }}
+                  />
+               </Box>
+
 
                <form onSubmit={onSubmit}>
                   <TextField
@@ -91,10 +96,9 @@ export default function LoginPage() {
 
                   <Button
                      variant="contained"
-                     color="primary"
                      type="submit"
                      fullWidth
-                     sx={{ mt: 3 }}
+                     sx={{ mt: 3, backgroundColor: "#008e63a9", '&:hover': { backgroundColor: '#007a54' } }}
                   >
                      Enter
                   </Button>
